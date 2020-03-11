@@ -24,5 +24,10 @@ namespace S2_Eksamen_GUI
         {
             InitializeComponent();
         }
+
+        private void buttonContactinformation_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
