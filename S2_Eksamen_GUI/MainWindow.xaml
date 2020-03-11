@@ -14,9 +14,10 @@
             <ColumnDefinition></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
-            <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
@@ -39,7 +40,7 @@
                   BorderThickness="1"
                   Grid.ColumnSpan="2"
                   Background="LightGray"
-                  Grid.RowSpan="17"
+                  Grid.RowSpan="19"
                   ItemsSource="{Binding Orders}"
                   SelectedItem="{Binding SelectedOrder}">
             <ListView.View>
@@ -57,45 +58,51 @@
                Content="CustomerId:" />
         <Label Grid.Column="2"
                Grid.Row="2"
-               Content="OrderDate:" />
+               Content="EmployeeId:" />
         <Label Grid.Column="2"
                Grid.Row="3"
-               Content="RequiredDate:" />
+               Content="OrderDate:" />
         <Label Grid.Column="2"
                Grid.Row="4"
-               Content="ShippedDate:" />
+               Content="RequiredDate:" />
         <Label Grid.Column="2"
                Grid.Row="5"
-               Content="ShipVia:" />
+               Content="ShippedDate:" />
         <Label Grid.Column="2"
                Grid.Row="6"
-               Content="Freight:" />
+               Content="ShipVia:" />
         <Label Grid.Column="2"
                Grid.Row="7"
-               Content="ShipName:" />
+               Content="Freight:" />
         <Label Grid.Column="2"
                Grid.Row="8"
-               Content="ShipAddress:" />
+               Content="ShipName:" />
         <Label Grid.Column="2"
                Grid.Row="9"
-               Content="ShipCity:" />
+               Content="ShipAddress:" />
         <Label Grid.Column="2"
                Grid.Row="10"
-               Content="ShippedRegion:" />
+               Content="ShipCity:" />
         <Label Grid.Column="2"
                Grid.Row="11"
-               Content="ShipPostalCode:" />
+               Content="ShippedRegion:" />
         <Label Grid.Column="2"
                Grid.Row="12"
-               Content="ShipCountry:" />
+               Content="ShipPostalCode:" />
         <Label Grid.Column="2"
                Grid.Row="13"
-               Content="UnitPrice:" />
+               Content="ShipCountry:" />
         <Label Grid.Column="2"
                Grid.Row="14"
-               Content="Quantity:" />
+               Content="ProductId:" />
         <Label Grid.Column="2"
                Grid.Row="15"
+               Content="UnitPrice:" />
+        <Label Grid.Column="2"
+               Grid.Row="16"
+               Content="Quantity:" />
+        <Label Grid.Column="2"
+               Grid.Row="17"
                Content="Discount:" />
         <TextBox Grid.Column="3"
                  Grid.Row="0" />
@@ -129,15 +136,18 @@
                  Grid.Row="14" />
         <TextBox Grid.Column="3"
                  Grid.Row="15" />
+        <TextBox Grid.Column="3"
+                 Grid.Row="16" />
+        <TextBox Grid.Column="3"
+                 Grid.Row="17" />
         <Button x:Name="buttonContactinformation"
                 Grid.Column="2"
-                Grid.Row="16"
+                Grid.Row="18"
                 Content="Gem / opdater"
                 Margin="110,0,0,10"
                 Height="30"
                 Width="100"
-                HorizontalAlignment="Left"
-                
+                HorizontalAlignment="Left"             
                 Grid.ColumnSpan="2"
                 Click="buttonContactinformation_Click" />
     </Grid>
