@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -35,7 +36,14 @@ namespace S2_Eksamen_GUI
 
         private void OrderSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            viewModel.SelectedOrderDetails = viewModel.SelectedOrder.OrderDetails;
+            foreach(OrderDetails orderDetails in viewModel.SelectedOrderDetails) 
+            {
+                textBoxProductID.Text = $"{orderDetails.ProductID} ";
+                textBoxUnitPrice.Text = $"{orderDetails.UnitPrice} ";
+                textBoxQuantity.Text = $"{orderDetails.Quantity}   ";
+                textBoxDiscount.Text = $"{orderDetails.Discount}   ";
+            }
         }
     }
 }

@@ -108,14 +108,14 @@
                  Grid.Row="1"
                  Text="{Binding SelectedOrder.EmployeeID}" />
         <DatePicker Grid.Column="2"
-                 Grid.Row="2"
-                 Text="{Binding SelectedOrder.OrderDate}" />
+                    Grid.Row="2"
+                    Text="{Binding SelectedOrder.OrderDate}" />
         <DatePicker Grid.Column="2"
-                 Grid.Row="3"
-                 Text="{Binding SelectedOrder.RequiredDate}" />
+                    Grid.Row="3"
+                    Text="{Binding SelectedOrder.RequiredDate}" />
         <DatePicker Grid.Column="2"
-                 Grid.Row="4"
-                 Text="{Binding SelectedOrder.ShippedDate}" />
+                    Grid.Row="4"
+                    Text="{Binding SelectedOrder.ShippedDate}" />
         <TextBox Grid.Column="2"
                  Grid.Row="5"
                  Text="{Binding SelectedOrder.ShipVia}" />
@@ -140,18 +140,25 @@
         <TextBox Grid.Column="2"
                  Grid.Row="12"
                  Text="{Binding SelectedOrder.ShipCountry}" />
-        <TextBox Grid.Column="2"
+        <TextBox
+                 x:Name="textBoxProductID"
+                 Grid.Column="2"
                  Grid.Row="13"
-                 Text="{Binding SelectedOrder.OrderDetails}" />
-        <TextBox Grid.Column="2"
+                 Text="{Binding SelectedOrderDetails.ProductID}" />
+        <TextBox 
+                 x:Name="textBoxUnitPrice"
+                 Grid.Column="2"
                  Grid.Row="14"
-                 Text="{Binding SelectedOrder.UnitPrice}" />
-        <TextBox Grid.Column="2"
+                 Text="{Binding SelectedOrderDetails.UnitPrice}" />
+        <TextBox 
+                 x:Name="textBoxQuantity"
+                 Grid.Column="2"
                  Grid.Row="15"
-                 Text="{Binding SelectedOrder.Quantity}" />
-        <TextBox Grid.Column="2"
+                 Text="{Binding SelectedOrderDetails.Quantity}" />
+        <TextBox x:Name="textBoxDiscount"
+                 Grid.Column="2"
                  Grid.Row="16"
-                 Text="{Binding SelectedOrder.Discount}" />
+                 Text="{Binding SelectedOrderDetails.Discount}" />
         <Button x:Name="buttonSaveOrder"
                 Grid.Column="1"
                 Grid.Row="17"
@@ -159,7 +166,7 @@
                 Margin="110,0,0,10"
                 Height="30"
                 Width="100"
-                HorizontalAlignment="Left"             
+                HorizontalAlignment="Left"
                 Grid.ColumnSpan="2"
                 Click="buttonSaveOrder_Click" />
     </Grid>
