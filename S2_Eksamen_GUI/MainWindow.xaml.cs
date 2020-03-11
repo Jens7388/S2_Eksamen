@@ -36,13 +36,19 @@ namespace S2_Eksamen_GUI
 
         private void OrderSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            textBoxProductID.Text = null;
+            textBoxUnitPrice.Text = null;
+            textBoxQuantity.Text = null;
+            textBoxDiscount.Text = null;
+
             viewModel.SelectedOrderDetails = viewModel.SelectedOrder.OrderDetails;
             foreach(OrderDetails orderDetails in viewModel.SelectedOrderDetails) 
             {
-                textBoxProductID.Text = $"{orderDetails.ProductID} ";
-                textBoxUnitPrice.Text = $"{orderDetails.UnitPrice} ";
-                textBoxQuantity.Text = $"{orderDetails.Quantity}   ";
-                textBoxDiscount.Text = $"{orderDetails.Discount}   ";
+                //next step: try to make textboxes scrollable!
+                textBoxProductID.Text += $"{orderDetails.ProductID}\n";
+                textBoxUnitPrice.Text += $"{orderDetails.UnitPrice}\n";
+                textBoxQuantity.Text += $"{orderDetails.Quantity}\n";
+                textBoxDiscount.Text += $"{orderDetails.Discount}\n";
             }
         }
     }
