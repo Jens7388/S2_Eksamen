@@ -186,34 +186,6 @@ namespace DataAccess
             }
             return orders;
         }
-        /// <summary>
-        /// Gets all order details.
-        /// </summary>
-        /// <returns>A list of all order details</returns>
-        public List<OrderDetails> GetAllOrderDetails()
-        {
-            List<OrderDetails> orderDetails = new List<OrderDetails>();
-            string query = "SELECT * FROM [Order Details]";
-            DataSet resultSet;
-            try
-            {
-                resultSet = Execute(query);
-            }
-            catch(Exception)
-            {
-                throw;
-            }
-
-            if(resultSet.Tables.Count > 0 && resultSet.Tables[0].Rows.Count > 0)
-            {
-                foreach(DataRow dataRow in resultSet.Tables[0].Rows)
-                {
-                    OrderDetails orderDetail = ExtractOrderDetailsFrom(dataRow);
-                    orderDetails.Add(orderDetail);
-                }
-            }
-            return orderDetails;
-        }
         #endregion
     }
 }
