@@ -46,7 +46,7 @@
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="All Orders:"
-                                    Width="325" />
+                                    Width="330" />
                 </GridView>
             </ListView.View>
         </ListView>
