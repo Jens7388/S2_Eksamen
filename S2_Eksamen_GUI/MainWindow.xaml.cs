@@ -22,7 +22,7 @@ namespace S2_Eksamen_GUI
     {
         private ViewModel viewModel;
         public MainWindow()
-        {          
+        {         
             InitializeComponent();
             viewModel = new ViewModel();
             DataContext = viewModel;
