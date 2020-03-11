@@ -107,13 +107,13 @@
         <TextBox Grid.Column="2"
                  Grid.Row="1"
                  Text="{Binding SelectedOrder.EmployeeID}" />
-        <TextBox Grid.Column="2"
+        <DatePicker Grid.Column="2"
                  Grid.Row="2"
                  Text="{Binding SelectedOrder.OrderDate}" />
-        <TextBox Grid.Column="2"
+        <DatePicker Grid.Column="2"
                  Grid.Row="3"
                  Text="{Binding SelectedOrder.RequiredDate}" />
-        <TextBox Grid.Column="2"
+        <DatePicker Grid.Column="2"
                  Grid.Row="4"
                  Text="{Binding SelectedOrder.ShippedDate}" />
         <TextBox Grid.Column="2"
