@@ -20,12 +20,20 @@ namespace S2_Eksamen_GUI
     /// </summary>
     public partial class MainWindow: Window
     {
+        private ViewModel viewModel;
         public MainWindow()
-        {
+        {          
             InitializeComponent();
+            viewModel = new ViewModel();
+            DataContext = viewModel;
         }
 
-        private void buttonContactinformation_Click(object sender, RoutedEventArgs e)
+        private void buttonSaveOrder_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void OrderSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
         }

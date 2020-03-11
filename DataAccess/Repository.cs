@@ -99,7 +99,7 @@ namespace DataAccess
         }
 
         /// <summary>
-        /// Extract all data relevant to an employee from a dat row object, and return an employee object.
+        /// Extract all data relevant to an order from a dat row object, and return an order object.
         /// </summary>
         /// <param name="dataRow"></param>
         /// <returns></returns>
@@ -110,20 +110,34 @@ namespace DataAccess
             int employeeID = (int)dataRow["EmployeeID"];
             DateTime orderDate = (DateTime)dataRow["OrderDate"];
             DateTime requiredDate = (DateTime)dataRow["RequiredDate"];
-            DateTime shippedDate = (DateTime)dataRow["ShippedDate"];
+            DateTime shippedDate = Convert.IsDBNull(dataRow["ShippedDate"]) ? DateTime.MinValue : (DateTime)dataRow["ShippedDate"];
             int shipVia = (int)dataRow["ShipVia"];
             decimal freight = (decimal)dataRow["Freight"];
-            string shipName = (string)dataRow["ShipName"];
-            string shipAddress = (string)dataRow["ShipAddress"];
-            string shipCity = (string)dataRow["ShipCity"];
-            string shipRegion = (string)dataRow["ShipRegion"];
-            string shipPostalCode = (string)dataRow["ShipPostalCode"];
-            string shipCountry = (string)dataRow["ShipCountry"];
+            string shipName = Convert.IsDBNull(dataRow["ShipName"]) ? null : (string)dataRow["ShipName"];
+            string shipAddress = Convert.IsDBNull(dataRow["ShipAddress"]) ? null : (string)dataRow["ShipAddress"];
+            string shipCity = Convert.IsDBNull(dataRow["ShipCity"]) ? null : (string)dataRow["ShipCity"];
+            string shipRegion = Convert.IsDBNull(dataRow["ShipRegion"]) ? null : (string)dataRow["ShipRegion"];
+            string shipPostalCode = Convert.IsDBNull(dataRow["ShipPostalCode"]) ? null : (string)dataRow["ShipPostalCode"];
+            string shipCountry = Convert.IsDBNull(dataRow["ShipCountry"]) ? null : (string)dataRow["ShipCountry"];
 
-            Order order = new Order(orderID, customerID, employeeID, orderDate, requiredDate, shippedDate, shipVia, freight, shipName, shipAddress, shipCity, shipRegion, shipPostalCode, shipCountry);
+
+            string query = $"SELECT * FROM [Order Details] WHERE OrderID = {orderID}";
+            Repository repository = new Repository();
+            DataSet orderDetails = repository.Execute(query);
+            List<OrderDetails> orderDetailList = new List<OrderDetails>();
+         
+                orderDetailList.Add(orderDetail);
+            
+
+            Order order = new Order(orderID, customerID, employeeID, orderDate, requiredDate, shippedDate, shipVia, freight, shipName, shipAddress, shipCity, shipRegion, shipPostalCode, shipCountry, orderDetailList);
 
             return order;
         }
+        /// <summary>
+        /// Extract all data relevant to an order detail from a dat row object, and return an order detail object.
+        /// </summary>
+        /// <param name="dataRow"></param>
+        /// <returns></returns>
         private static OrderDetails ExtractOrderDetailsFrom(DataRow dataRow)
         {
             int orderID = (int)dataRow["OrderID"];
@@ -141,9 +155,9 @@ namespace DataAccess
 
         #region Repository Methods
         /// <summary>
-        /// Gets all employees.
+        /// Gets all orders.
         /// </summary>
-        /// <returns>A list of all employees</returns>
+        /// <returns>A list of all orders</returns>
         public List<Order> GetAllOrders()
         {
             List<Order> orders = new List<Order>();
@@ -168,6 +182,10 @@ namespace DataAccess
             }
             return orders;
         }
+        /// <summary>
+        /// Gets all order details.
+        /// </summary>
+        /// <returns>A list of all order details</returns>
         public List<OrderDetails> GetAllOrderDetails()
         {
             List<OrderDetails> orderDetails = new List<OrderDetails>();

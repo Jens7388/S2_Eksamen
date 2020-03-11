@@ -22,7 +22,7 @@ namespace Entities
         protected string shipCountry;
         protected List<OrderDetails> orderDetails;
 
-        public Order(int orderID, string customerID, int employeeID, DateTime orderDate, DateTime requiredDate, DateTime shippedDate, int shipVia, decimal freight, string shipName, string shipAddress, string shipCity, string shipRegion, string shipPostalCode, string shipCountry)
+        public Order(int orderID, string customerID, int employeeID, DateTime orderDate, DateTime requiredDate, DateTime shippedDate, int shipVia, decimal freight, string shipName, string shipAddress, string shipCity, string shipRegion, string shipPostalCode, string shipCountry, List<OrderDetails> orderDetails)
         {
             OrderID = orderID;
             CustomerID = customerID;
@@ -38,6 +38,7 @@ namespace Entities
             ShipRegion = shipRegion;
             ShipPostalCode = shipPostalCode;
             ShipCountry = shipCountry;
+            OrderDetails = orderDetails;
         }
 
         public virtual int OrderID
