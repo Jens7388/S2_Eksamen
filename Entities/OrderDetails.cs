@@ -6,49 +6,49 @@ namespace Entities
 {
     public class OrderDetails
     {
-        protected int orderId;
-        protected int productId;
+        protected int orderID;
+        protected int productID;
         protected Decimal unitPrice;
         protected int quantity;
         protected Decimal discount;
 
-        public OrderDetails(int orderId, int productId, decimal unitPrice, int quantity, decimal discount)
+        public OrderDetails(int orderID, int productID, decimal unitPrice, int quantity, decimal discount)
         {
-            OrderId = orderId;
-            ProductId = productId;
+            OrderID = orderID;
+            ProductID = productID;
             UnitPrice = unitPrice;
             Quantity = quantity;
             Discount = discount;
         }
 
-        public virtual int OrderId
+        public virtual int OrderID
         {
             get
             {
-                return orderId;
+                return orderID;
             }
 
             set
             {
-                if(value != orderId)
+                if(value != orderID)
                 {
-                    orderId = value;
+                    orderID = value;
                 }
             }
         }
 
-        public virtual int ProductId
+        public virtual int ProductID
         {
             get
             {
-                return productId;
+                return productID;
             }
 
             set
             {
-                if(value != productId)
+                if(value != productID)
                 {
-                    productId = value;
+                    productID = value;
                 }
             }
         }

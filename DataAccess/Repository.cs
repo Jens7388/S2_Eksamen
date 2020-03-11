@@ -124,6 +124,18 @@ namespace DataAccess
 
             return order;
         }
+        private static OrderDetails ExtractOrderDetailsFrom(DataRow dataRow)
+        {
+            int orderID = (int)dataRow["OrderID"];
+            int productID = (int)dataRow["ProductID"];
+            decimal unitPrice = (decimal)dataRow["UnitPrice"];
+            int quantity = (int)dataRow["Quantity"];
+            decimal discount = (int)dataRow["Discount"];
+
+            OrderDetails orderDetails = new OrderDetails(orderID, productID, unitPrice, quantity, discount);
+
+            return orderDetails;
+        }
         #endregion
 
 
@@ -155,6 +167,30 @@ namespace DataAccess
                 }
             }
             return orders;
+        }
+        public List<OrderDetails> GetAllOrderDetails()
+        {
+            List<OrderDetails> orderDetails = new List<OrderDetails>();
+            string query = "SELECT * FROM [Order Details]";
+            DataSet resultSet;
+            try
+            {
+                resultSet = Execute(query);
+            }
+            catch(Exception)
+            {
+                throw;
+            }
+
+            if(resultSet.Tables.Count > 0 && resultSet.Tables[0].Rows.Count > 0)
+            {
+                foreach(DataRow dataRow in resultSet.Tables[0].Rows)
+                {
+                    OrderDetails orderDetail = ExtractOrderDetailsFrom(dataRow);
+                    orderDetails.Add(orderDetail);
+                }
+            }
+            return orderDetails;
         }
         #endregion
     }

@@ -52,13 +52,13 @@
         </ListView>
         <Label Grid.Column="2"
                Grid.Row="0"
-               Content="OrderId:" />
+               Content="OrderID:" />
         <Label Grid.Column="2"
                Grid.Row="1"
-               Content="CustomerId:" />
+               Content="CustomerID:" />
         <Label Grid.Column="2"
                Grid.Row="2"
-               Content="EmployeeId:" />
+               Content="EmployeeID:" />
         <Label Grid.Column="2"
                Grid.Row="3"
                Content="OrderDate:" />
@@ -94,7 +94,7 @@
                Content="ShipCountry:" />
         <Label Grid.Column="2"
                Grid.Row="14"
-               Content="ProductId:" />
+               Content="ProductID:" />
         <Label Grid.Column="2"
                Grid.Row="15"
                Content="UnitPrice:" />
