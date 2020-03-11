@@ -10,9 +10,9 @@ namespace Entities
         protected int productID;
         protected Decimal unitPrice;
         protected int quantity;
-        protected Decimal discount;
+        protected float discount;
 
-        public OrderDetails(int orderID, int productID, decimal unitPrice, int quantity, decimal discount)
+        public OrderDetails(int orderID, int productID, decimal unitPrice, int quantity, float discount)
         {
             OrderID = orderID;
             ProductID = productID;
@@ -85,7 +85,7 @@ namespace Entities
             }
         }
 
-        public virtual decimal Discount
+        public virtual float Discount
         {
             get
             {

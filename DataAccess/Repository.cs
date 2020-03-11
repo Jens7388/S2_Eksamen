@@ -125,10 +125,14 @@ namespace DataAccess
             Repository repository = new Repository();
             DataSet orderDetails = repository.Execute(query);
             List<OrderDetails> orderDetailList = new List<OrderDetails>();
-         
-                orderDetailList.Add(orderDetail);
-            
-
+            if(orderDetails.Tables.Count > 0 && orderDetails.Tables[0].Rows.Count > 0)
+            {
+                foreach(DataRow orderDetailsDataRow in orderDetails.Tables[0].Rows)
+                {
+                    OrderDetails orderDetail = ExtractOrderDetailsFrom(orderDetailsDataRow);
+                    orderDetailList.Add(orderDetail);
+                }
+            }
             Order order = new Order(orderID, customerID, employeeID, orderDate, requiredDate, shippedDate, shipVia, freight, shipName, shipAddress, shipCity, shipRegion, shipPostalCode, shipCountry, orderDetailList);
 
             return order;
@@ -143,8 +147,8 @@ namespace DataAccess
             int orderID = (int)dataRow["OrderID"];
             int productID = (int)dataRow["ProductID"];
             decimal unitPrice = (decimal)dataRow["UnitPrice"];
-            int quantity = (int)dataRow["Quantity"];
-            decimal discount = (int)dataRow["Discount"];
+            short quantity = (short)dataRow["Quantity"];
+            float discount = (float)dataRow["Discount"];
 
             OrderDetails orderDetails = new OrderDetails(orderID, productID, unitPrice, quantity, discount);
 
