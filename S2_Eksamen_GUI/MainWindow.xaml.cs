@@ -1,6 +1,9 @@
-﻿using Entities;
+﻿using DataAccess;
+using Entities;
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -31,11 +34,34 @@ namespace S2_Eksamen_GUI
 
         private void buttonSaveOrder_Click(object sender, RoutedEventArgs e)
         {
+            List<OrderDetails> orderDetails = new List<OrderDetails>();
+            string[] productIDArray = textBoxProductID.Text.Split("\n");
+            string[] unitPriceArray = textBoxUnitPrice.Text.Split("\n");
+            string[] quantityArray = textBoxQuantity.Text.Split("\n");
+            string[] discountArray = textBoxDiscount.Text.Split("\n");
 
+            int.TryParse(textBoxEmployeeID.Text, out int employeeID);
+            int.TryParse(textBoxShipVia.Text, out int shipVia);
+            decimal.TryParse(textBoxFreight.Text, out decimal freight);
+            Order order = new Order(1, textBoxCustomerID.Text, employeeID, datePickerOrderDate.SelectedDate.Value.Date,
+                datePickerOrderDate.SelectedDate.Value.Date, datePickerOrderDate.SelectedDate.Value.Date, shipVia, freight, 
+                textBoxShipName.Text, textBoxShipAddress.Text, textBoxShipCity.Text, textBoxShipRegion.Text, textBoxShipPostalCode.Text,
+                textBoxShipCountry.Text, orderDetails);
+            try
+            {
+                Repository repository = new Repository();
+                repository.AddOrder(order);
+                viewModel.Orders.Add(order);
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }          
         }
 
         private void OrderSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            textBoxOrderID.Text = null;
             textBoxProductID.Text = null;
             textBoxUnitPrice.Text = null;
             textBoxQuantity.Text = null;
@@ -44,7 +70,7 @@ namespace S2_Eksamen_GUI
             viewModel.SelectedOrderDetails = viewModel.SelectedOrder.OrderDetails;
             foreach(OrderDetails orderDetails in viewModel.SelectedOrderDetails) 
             {
-                //next step: try to make textboxes scrollable!
+                textBoxOrderID.Text = $"{orderDetails.OrderID}";
                 textBoxProductID.Text += $"{orderDetails.ProductID}\n";
                 textBoxUnitPrice.Text += $"{orderDetails.UnitPrice}\n";
                 textBoxQuantity.Text += $"{orderDetails.Quantity}\n";

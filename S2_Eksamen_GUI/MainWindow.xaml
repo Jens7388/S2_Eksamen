@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:S2_Eksamen_GUI"
         mc:Ignorable="d"
         Title="MainWindow"
-        Height="700"
+        Height="780"
         Width="1250">
     <Grid>
         <Grid.ColumnDefinitions>
@@ -33,12 +33,15 @@
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            
         </Grid.RowDefinitions>
         <ListView x:Name="listView_orders"
                   BorderThickness="1"
                   Grid.ColumnSpan="1"
                   Background="LightGray"
-                  Grid.RowSpan="19"
+                  Grid.RowSpan="20"
                   SelectionChanged="OrderSelectionChanged"
                   ItemsSource="{Binding Orders}"
                   SelectedItem="{Binding SelectedOrder}">
@@ -91,77 +94,106 @@
                Content="ShipCountry:" />
         <Label Grid.Column="1"
                Grid.Row="13"
-               Content="ProductID:" />
+               FontWeight="Bold"
+               FontSize="20"
+               Content="Order Details:" />
         <Label Grid.Column="1"
                Grid.Row="14"
-               Content="UnitPrice:" />
+               Content="OrderID:" />
         <Label Grid.Column="1"
                Grid.Row="15"
-               Content="Quantity:" />
+               Content="ProductID:" />
         <Label Grid.Column="1"
                Grid.Row="16"
+               Content="UnitPrice:" />
+        <Label Grid.Column="1"
+               Grid.Row="17"
+               Content="Quantity:" />
+        <Label Grid.Column="1"
+               Grid.Row="18"
                Content="Discount:" />
-        <TextBox Grid.Column="2"
+        <TextBox x:Name="textBoxCustomerID"
+                 Grid.Column="2"
                  Grid.Row="0"
                  Text="{Binding SelectedOrder.CustomerID}" />
-        <TextBox Grid.Column="2"
+        <TextBox x:Name="textBoxEmployeeID"
+                 Grid.Column="2"
                  Grid.Row="1"
                  Text="{Binding SelectedOrder.EmployeeID}" />
-        <DatePicker Grid.Column="2"
+        <DatePicker x:Name="datePickerOrderDate"
+                    Grid.Column="2"
                     Grid.Row="2"
                     Text="{Binding SelectedOrder.OrderDate}" />
-        <DatePicker Grid.Column="2"
+        <DatePicker x:Name="datePickerRequiredDate"
+                    Grid.Column="2"
                     Grid.Row="3"
                     Text="{Binding SelectedOrder.RequiredDate}" />
-        <DatePicker Grid.Column="2"
+        <DatePicker x:Name="datePickerShippedDate"
+                    Grid.Column="2"
                     Grid.Row="4"
                     Text="{Binding SelectedOrder.ShippedDate}" />
-        <TextBox Grid.Column="2"
+        <TextBox x:Name="textBoxShipVia"
+                 Grid.Column="2"
                  Grid.Row="5"
                  Text="{Binding SelectedOrder.ShipVia}" />
-        <TextBox Grid.Column="2"
+        <TextBox x:Name="textBoxFreight"
+                 Grid.Column="2"
                  Grid.Row="6"
                  Text="{Binding SelectedOrder.Freight}" />
-        <TextBox Grid.Column="2"
+        <TextBox x:Name="textBoxShipName"
+                 Grid.Column="2"
                  Grid.Row="7"
                  Text="{Binding SelectedOrder.ShipName}" />
-        <TextBox Grid.Column="2"
+        <TextBox x:Name="textBoxShipAddress"
+                 Grid.Column="2"
                  Grid.Row="8"
                  Text="{Binding SelectedOrder.ShipAddress}" />
-        <TextBox Grid.Column="2"
+        <TextBox x:Name="textBoxShipCity"
+                 Grid.Column="2"
                  Grid.Row="9"
                  Text="{Binding SelectedOrder.ShipCity}" />
-        <TextBox Grid.Column="2"
+        <TextBox x:Name="textBoxShipRegion"
+                 Grid.Column="2"
                  Grid.Row="10"
                  Text="{Binding SelectedOrder.ShipRegion}" />
-        <TextBox Grid.Column="2"
+        <TextBox x:Name="textBoxShipPostalCode"
+                 Grid.Column="2"
                  Grid.Row="11"
                  Text="{Binding SelectedOrder.ShipPostalCode}" />
-        <TextBox Grid.Column="2"
+        <TextBox x:Name="textBoxShipCountry"
+                 Grid.Column="2"
                  Grid.Row="12"
                  Text="{Binding SelectedOrder.ShipCountry}" />
+        <TextBox x:Name="textBoxOrderID"
+                 Grid.Column="2"
+                 Grid.Row="14"
+                 Text="{Binding SelectedOrderDetails.OrderID}" />
         <TextBox
                  x:Name="textBoxProductID"
                  Grid.Column="2"
-                 Grid.Row="13"
-                 Text="{Binding SelectedOrderDetails.ProductID}" />
+                 Grid.Row="15"
+                 Text="{Binding SelectedOrderDetails.ProductID}"
+                 VerticalScrollBarVisibility="Auto" />
         <TextBox 
                  x:Name="textBoxUnitPrice"
                  Grid.Column="2"
-                 Grid.Row="14"
-                 Text="{Binding SelectedOrderDetails.UnitPrice}" />
+                 Grid.Row="16"
+                 Text="{Binding SelectedOrderDetails.UnitPrice}"
+                 VerticalScrollBarVisibility="Auto" />
         <TextBox 
                  x:Name="textBoxQuantity"
                  Grid.Column="2"
-                 Grid.Row="15"
-                 Text="{Binding SelectedOrderDetails.Quantity}" />
+                 Grid.Row="17"
+                 Text="{Binding SelectedOrderDetails.Quantity}"
+                 VerticalScrollBarVisibility="Auto" />
         <TextBox x:Name="textBoxDiscount"
                  Grid.Column="2"
-                 Grid.Row="16"
-                 Text="{Binding SelectedOrderDetails.Discount}" />
+                 Grid.Row="18"
+                 Text="{Binding SelectedOrderDetails.Discount}"
+                 VerticalScrollBarVisibility="Auto" />
         <Button x:Name="buttonSaveOrder"
                 Grid.Column="1"
-                Grid.Row="17"
+                Grid.Row="19"
                 Content="Gem / opdater"
                 Margin="110,0,0,10"
                 Height="30"
