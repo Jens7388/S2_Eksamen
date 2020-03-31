@@ -39,7 +39,17 @@ namespace S2_Eksamen_GUI
             string[] unitPriceArray = textBoxUnitPrice.Text.Split("\n");
             string[] quantityArray = textBoxQuantity.Text.Split("\n");
             string[] discountArray = textBoxDiscount.Text.Split("\n");
-
+            for(int i = 0; i < productIDArray.Length; i++)
+            {
+                int.TryParse(textBoxOrderID.Text, out int orderID);
+                int.TryParse(productIDArray[i], out int productID);
+                Decimal.TryParse(unitPriceArray[i], out Decimal unitPrice);
+                int.TryParse(quantityArray[i], out int quantity);
+                float.TryParse(discountArray[i], out float discount);
+                OrderDetails orderDetail = new OrderDetails(orderID, productID, unitPrice,
+                    quantity, discount);
+                orderDetails.Add(orderDetail);
+            }
             int.TryParse(textBoxEmployeeID.Text, out int employeeID);
             int.TryParse(textBoxShipVia.Text, out int shipVia);
             decimal.TryParse(textBoxFreight.Text, out decimal freight);
