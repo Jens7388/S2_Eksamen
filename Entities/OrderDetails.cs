@@ -30,6 +30,11 @@ namespace Entities
 
             set
             {
+                (bool isValid, string errorMessage) validationResult = ValidateInts(value);
+                if(!validationResult.isValid)
+                {
+                    throw new ArgumentException(nameof(orderID), validationResult.errorMessage);
+                }
                 if(value != orderID)
                 {
                     orderID = value;
@@ -46,6 +51,11 @@ namespace Entities
 
             set
             {
+                (bool isValid, string errorMessage) validationResult = ValidateInts(value);
+                if(!validationResult.isValid)
+                {
+                    throw new ArgumentException(nameof(orderID), validationResult.errorMessage);
+                }
                 if(value != productID)
                 {
                     productID = value;
@@ -62,6 +72,11 @@ namespace Entities
 
             set
             {
+                (bool isValid, string errorMessage) validationResult = ValidateDecimals(value);
+                if(!validationResult.isValid)
+                {
+                    throw new ArgumentException(nameof(orderID), validationResult.errorMessage);
+                }
                 if(value != unitPrice)
                 {
                     unitPrice = value;
@@ -78,6 +93,11 @@ namespace Entities
 
             set
             {
+                (bool isValid, string errorMessage) validationResult = ValidateInts(value);
+                if(!validationResult.isValid)
+                {
+                    throw new ArgumentException(nameof(orderID), validationResult.errorMessage);
+                }
                 if(value != quantity)
                 {
                     quantity = value;
@@ -98,6 +118,29 @@ namespace Entities
                 {
                     discount = value;
                 }
+            }
+        }
+        public static (bool, string) ValidateInts(int input)
+        {
+            if(input == 0)
+            {
+                return (false, "Du mangler at udfylde et af de nødvendige felter! (OrderID, ProductID, Unitprice og Quantity skal udfyldes!)");
+            }
+            else
+            {
+                return (true, String.Empty);
+            }
+        }
+
+        public static (bool, string) ValidateDecimals(decimal input)
+        {
+            if(input == 0)
+            {
+                return (false, "Du mangler at udfylde et af de nødvendige felter! (OrderID, ProductID, Unitprice og Quantity skal udfyldes!)");
+            }
+            else
+            {
+                return (true, String.Empty);
             }
         }
     }

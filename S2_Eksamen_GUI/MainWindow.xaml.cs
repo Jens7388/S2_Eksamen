@@ -85,18 +85,27 @@ namespace S2_Eksamen_GUI
             string[] unitPriceArray = textBoxUnitPrice.Text.Split("\n");
             string[] quantityArray = textBoxQuantity.Text.Split("\n");
             string[] discountArray = textBoxDiscount.Text.Split("\n");
+
             try
             {
-                for(int i = 0; i < productIDArray.Length - 1; i++)
+                for(int i = 0; i < productIDArray.Length; i++)
                 {
                     int.TryParse(comboBoxOrderID.Text, out int orderID);
                     int.TryParse(productIDArray[i], out int productID);
                     Decimal.TryParse(unitPriceArray[i], out Decimal unitPrice);
                     int.TryParse(quantityArray[i], out int quantity);
                     float.TryParse(discountArray[i], out float discount);
-                    OrderDetails orderDetail = new OrderDetails(orderID, productID, unitPrice,
+
+                    if(productID == 0 && unitPrice == 0 && quantity == 0 && discount == 0)
+                    {
+
+                    }
+                    else
+                    {
+                        OrderDetails orderDetail = new OrderDetails(orderID, productID, unitPrice,
                         quantity, discount);
-                    orderDetails.Add(orderDetail);
+                        orderDetails.Add(orderDetail);
+                    }
                 }
                 Repository repository = new Repository();
                 repository.AddOrderDetails(orderDetails);
