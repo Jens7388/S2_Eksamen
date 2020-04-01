@@ -30,10 +30,7 @@ namespace S2_Eksamen_GUI
             InitializeComponent();
             viewModel = new ViewModel();
             DataContext = viewModel;
-            for(int i = 0; i < viewModel.Orders.Count; i++)
-            {
-                comboBoxOrderID.Items.Add(viewModel.Orders[i].OrderID);
-            }
+            GetComboBoxItems();
         }
 
         private void buttonAddOrder_Click(object sender, RoutedEventArgs e)
@@ -41,10 +38,10 @@ namespace S2_Eksamen_GUI
             List<OrderDetails> orderDetails = new List<OrderDetails>();
             try
             {
-                int.TryParse(textBoxEmployeeID.Text, out int employeeID);
-                int.TryParse(textBoxShipVia.Text, out int shipVia);
+                int.TryParse(comboBoxEmployeeID.Text, out int employeeID);
+                int.TryParse(comboBoxShipVia.Text, out int shipVia);
                 decimal.TryParse(textBoxFreight.Text, out decimal freight);
-                Order order = new Order(1, textBoxCustomerID.Text, employeeID, datePickerOrderDate.SelectedDate.Value.Date,
+                Order order = new Order(1, comboBoxCustomerID.Text, employeeID, datePickerOrderDate.SelectedDate.Value.Date,
                     datePickerOrderDate.SelectedDate.Value.Date, datePickerOrderDate.SelectedDate.Value.Date, shipVia, freight,
                     textBoxShipName.Text, textBoxShipAddress.Text, textBoxShipCity.Text, textBoxShipRegion.Text, textBoxShipPostalCode.Text,
                     textBoxShipCountry.Text, orderDetails);
@@ -113,6 +110,29 @@ namespace S2_Eksamen_GUI
             catch(Exception ex)
             {
                 MessageBox.Show(ex.Message);
+            }
+        }
+        private void GetComboBoxItems()
+        {
+            for(int i = 0; i < viewModel.Orders.Count; i++)
+            {
+                comboBoxOrderID.Items.Add(viewModel.Orders[i].OrderID);
+            }
+            for(int i = 0; i < viewModel.Orders.Count; i++)
+            {
+              comboBoxCustomerID.Items.Add(viewModel.Orders[i].CustomerID);
+            }
+            for(int i = 0; i < 10; i++)
+            {
+                comboBoxEmployeeID.Items.Add(i);
+            }
+            for(int i = 200; i < 212; i++)
+            {
+                comboBoxEmployeeID.Items.Add(i);
+            }
+            for(int i = 0; i < 4; i++)
+            {
+                comboBoxShipVia.Items.Add(i);
             }
         }
     }

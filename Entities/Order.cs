@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Entities
@@ -64,7 +65,12 @@ namespace Entities
             }
             set
             {
-                if(customerID != value)
+                (bool isValid, string errorMessage) validationResult = ValidateStringsWithNumbers(value);
+                if(!validationResult.isValid)
+                {
+                    throw new ArgumentException(nameof(orderID), validationResult.errorMessage);
+                }
+                if(value != customerID)
                 {
                     customerID = value;
                 }
@@ -79,7 +85,12 @@ namespace Entities
             }
             set
             {
-                if(employeeID != value)
+                (bool isValid, string errorMessage) validationResult = ValidateInts(value);
+                if(!validationResult.isValid)
+                {
+                    throw new ArgumentException(nameof(orderID), validationResult.errorMessage);
+                }
+                if(value != employeeID)
                 {
                     employeeID = value;
                 }
@@ -139,7 +150,12 @@ namespace Entities
             }
             set
             {
-                if(shipVia != value)
+                (bool isValid, string errorMessage) validationResult = ValidateInts(value);
+                if(!validationResult.isValid)
+                {
+                    throw new ArgumentException(nameof(orderID), validationResult.errorMessage);
+                }
+                if(value != shipVia)
                 {
                     shipVia = value;
                 }
@@ -154,7 +170,12 @@ namespace Entities
             }
             set
             {
-                if(freight != value)
+                (bool isValid, string errorMessage) validationResult = ValidateFreight(value);
+                if(!validationResult.isValid)
+                {
+                    throw new ArgumentException(nameof(orderID), validationResult.errorMessage);
+                }
+                if(value != freight)
                 {
                     freight = value;
                 }
@@ -169,7 +190,12 @@ namespace Entities
             }
             set
             {
-                if(shipName != value)
+                (bool isValid, string errorMessage) validationResult = ValidateStringsWithoutNumbers(value);
+                if(!validationResult.isValid)
+                {
+                    throw new ArgumentException(nameof(orderID), validationResult.errorMessage);
+                }
+                if(value != shipName)
                 {
                     shipName = value;
                 }
@@ -184,7 +210,12 @@ namespace Entities
             }
             set
             {
-                if(shipAddress != value)
+                (bool isValid, string errorMessage) validationResult = ValidateStringsWithNumbers(value);
+                if(!validationResult.isValid)
+                {
+                    throw new ArgumentException(nameof(orderID), validationResult.errorMessage);
+                }
+                if(value != shipAddress)
                 {
                     shipAddress = value;
                 }
@@ -199,7 +230,12 @@ namespace Entities
             }
             set
             {
-                if(shipCity != value)
+                (bool isValid, string errorMessage) validationResult = ValidateStringsWithoutNumbers(value);
+                if(!validationResult.isValid)
+                {
+                    throw new ArgumentException(nameof(orderID), validationResult.errorMessage);
+                }
+                if(value != shipCity)
                 {
                     shipCity = value;
                 }
@@ -214,7 +250,12 @@ namespace Entities
             }
             set
             {
-                if(shipRegion != value)
+                (bool isValid, string errorMessage) validationResult = ValidateShipRegion(value);
+                if(!validationResult.isValid)
+                {
+                    throw new ArgumentException(nameof(orderID), validationResult.errorMessage);
+                }
+                if(value != shipRegion)
                 {
                     shipRegion = value;
                 }
@@ -229,7 +270,12 @@ namespace Entities
             }
             set
             {
-                if(shipPostalCode != value)
+                (bool isValid, string errorMessage) validationResult = ValidateStringsWithNumbers(value);
+                if(!validationResult.isValid)
+                {
+                    throw new ArgumentException(nameof(orderID), validationResult.errorMessage);
+                }
+                if(value != shipPostalCode)
                 {
                     shipPostalCode = value;
                 }
@@ -244,7 +290,12 @@ namespace Entities
             }
             set
             {
-                if(shipCountry != value)
+                (bool isValid, string errorMessage) validationResult = ValidateStringsWithoutNumbers(value);
+                if(!validationResult.isValid)
+                {
+                    throw new ArgumentException(nameof(orderID), validationResult.errorMessage);
+                }
+                if(value != shipCountry)
                 {
                     shipCountry = value;
                 }
@@ -266,5 +317,73 @@ namespace Entities
                 }
             }
         }
-    }
+
+        public static (bool, string) ValidateStringsWithoutNumbers(string input)
+        {
+            if(string.IsNullOrWhiteSpace(input))
+            {
+                return (false, "Du mangler at udfylde et af de nødvendige felter! (Alle felter undtaget ShippedDate, ShipRegion, ShipPostalCode skal udfyldes)");
+            }
+            else if(input.Any(char.IsDigit))
+            {
+                return (false, "ShipName, ShipCity, ShipRegion og ShipCountry må ikke indeholde tal!");
+            }
+            else
+            {
+                return (true, String.Empty);
+            }
+        }
+
+        public static (bool, string) ValidateInts(int input)
+        {
+            if(input == 0)
+            {
+                return (false, "Du mangler at udfylde et af de nødvendige felter! (Alle felter undtaget ShippedDate, ShipRegion, ShipPostalCode skal udfyldes)");
+            }
+            else
+            {
+                return (true, String.Empty);
+            }
+        }
+
+        public static (bool, string) ValidateStringsWithNumbers(string input)
+        {
+            if(string.IsNullOrWhiteSpace(input))
+            {
+                return (false, "Du mangler at udfylde et af de nødvendige felter! (Alle felter undtaget ShippedDate, ShipRegion, ShipPostalCode skal udfyldes)");
+            }
+            else
+            {
+                return (true, String.Empty);
+            }
+        }
+
+        public static (bool, string) ValidateFreight(decimal freight)
+        {
+            if(freight == 0)
+            {
+                return (false, "Du mangler at udfylde et af de nødvendige felter! (Alle felter undtaget ShippedDate, ShipRegion, ShipPostalCode skal udfyldes)");
+            }
+            else if(freight < 0)
+            {
+                return (false, "Freight må ikke være mindre end 0!");
+            }
+            else
+            {
+                return (true, String.Empty);
+            }
+        }
+
+        public static (bool, string) ValidateShipRegion(string shipRegion)
+        {
+            if(shipRegion.Any(char.IsDigit))
+            {
+                return (false, "ShipRegion må ikke indeholde tal!)");
+            }
+            else
+            {
+                return (true, String.Empty);
+            }
+        }
+    }   
 }

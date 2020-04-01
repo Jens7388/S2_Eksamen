@@ -112,11 +112,11 @@
         <Label Grid.Column="1"
                Grid.Row="18"
                Content="Discount:" />
-        <TextBox x:Name="textBoxCustomerID"
+        <ComboBox x:Name="comboBoxCustomerID"
                  Grid.Column="2"
                  Grid.Row="0"
-                 Text="{Binding SelectedOrder.CustomerID}" />
-        <TextBox x:Name="textBoxEmployeeID"
+                 SelectedItem="{Binding SelectedOrder.CustomerID}" />
+        <ComboBox x:Name="comboBoxEmployeeID"
                  Grid.Column="2"
                  Grid.Row="1"
                  Text="{Binding SelectedOrder.EmployeeID}" />
@@ -132,7 +132,7 @@
                     Grid.Column="2"
                     Grid.Row="4"
                     Text="{Binding SelectedOrder.ShippedDate}" />
-        <TextBox x:Name="textBoxShipVia"
+        <ComboBox x:Name="comboBoxShipVia"
                  Grid.Column="2"
                  Grid.Row="5"
                  Text="{Binding SelectedOrder.ShipVia}" />
@@ -166,8 +166,7 @@
                  Text="{Binding SelectedOrder.ShipCountry}" />
         <ComboBox x:Name="comboBoxOrderID"
                   Grid.Column="2"
-                  Grid.Row="14"                 
-                  ItemsSource="{Binding OrderID}" />
+                  Grid.Row="14" />
         <TextBox x:Name="textBoxProductID"
                  Grid.Column="2"
                  Grid.Row="15"
