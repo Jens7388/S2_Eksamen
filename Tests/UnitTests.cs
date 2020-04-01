@@ -10,9 +10,9 @@ namespace Tests
         public void TestOrderDetails()
         {
             int orderID = 1;
-            int productID = 0;
-            decimal unitPrice = 0;
-            int quantity = 0;
+            int productID = 77;
+            decimal unitPrice = 1;
+            int quantity = 1;
             float discount = 0;
             if(productID == 0 && unitPrice == 0 && quantity == 0 && discount == 0)
             {

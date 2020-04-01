@@ -51,7 +51,7 @@ namespace Entities
 
             set
             {
-                (bool isValid, string errorMessage) validationResult = ValidateInts(value);
+                (bool isValid, string errorMessage) validationResult = ValidateProductID(value);
                 if(!validationResult.isValid)
                 {
                     throw new ArgumentException(nameof(orderID), validationResult.errorMessage);
@@ -72,7 +72,7 @@ namespace Entities
 
             set
             {
-                (bool isValid, string errorMessage) validationResult = ValidateDecimals(value);
+                (bool isValid, string errorMessage) validationResult = ValidateUnitPrice(value);
                 if(!validationResult.isValid)
                 {
                     throw new ArgumentException(nameof(orderID), validationResult.errorMessage);
@@ -126,17 +126,42 @@ namespace Entities
             {
                 return (false, "Du mangler at udfylde et af de nødvendige felter! (OrderID, ProductID, Unitprice og Quantity skal udfyldes!)");
             }
+            else if(input < 0)
+            {
+                //Nej, dette er ikke bad practice, uanset hvad kan orderID ikke ende med at være i minus....
+                return (false, "Quantity må ikke være i minus!");
+            }
             else
             {
                 return (true, String.Empty);
             }
         }
 
-        public static (bool, string) ValidateDecimals(decimal input)
+        public static (bool, string) ValidateProductID(int productID)
         {
-            if(input == 0)
+            if(productID == 0)
             {
                 return (false, "Du mangler at udfylde et af de nødvendige felter! (OrderID, ProductID, Unitprice og Quantity skal udfyldes!)");
+            }
+            else if(productID > 78)
+            {
+                return (false, "Dette produkt findes ikke! (laveste productID = 1, højeste = 78!)");
+            }
+            else
+            {
+                return (true, String.Empty);
+            }
+        }
+
+        public static (bool, string) ValidateUnitPrice(decimal unitPrice)
+        {
+            if(unitPrice == 0)
+            {
+                return (false, "Du mangler at udfylde et af de nødvendige felter! (OrderID, ProductID, Unitprice og Quantity skal udfyldes!)");
+            }
+            else if(unitPrice < 0)
+            {
+                return (false, "UnitPrice må ikke være i minus!");
             }
             else
             {
