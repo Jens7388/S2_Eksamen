@@ -188,10 +188,10 @@ namespace DataAccess
 
         public void AddOrder(Order order)
         {
-            string sql = $"INSERT INTO Order VALUES('{order.CustomerID}', '{order.EmployeeID}', " +
+            string sql = $"INSERT INTO Orders(CustomerID, EmployeeID, OrderDate, RequiredDate, ShippedDate, ShipVia, Freight, ShipName, ShipAddress, ShipCity, ShipRegion, ShipPostalCode, ShipCountry)  VALUES('{order.CustomerID}', '{order.EmployeeID}', " +
                $"'{order.OrderDate}', '{order.RequiredDate}', '{order.ShippedDate}', '{order.ShipVia}'," +
                $" '{order.Freight}', '{order.ShipName}', '{order.ShipAddress}', '{order.ShipCity}', " +
-               $"'{order.ShipCity}', '{order.ShipRegion}', '{order.ShipPostalCode}', '{order.ShipCountry}')";
+               $" '{order.ShipRegion}', '{order.ShipPostalCode}', '{order.ShipCountry}')";
             DataSet resultSet;
             try
             {
@@ -207,7 +207,7 @@ namespace DataAccess
         {
             foreach(OrderDetails orderDetail in orderDetails)
             {
-                string sql = $"INSERT INTO Order VALUES('{orderDetail.OrderID}', '{orderDetail.ProductID}', '{orderDetail.UnitPrice}'," +
+                string sql = $"INSERT INTO " + @"""Order Details""" + $" VALUES('{orderDetail.OrderID}', '{orderDetail.ProductID}', '{orderDetail.UnitPrice}'," +
                     $"'{orderDetail.Quantity}', '{orderDetail.Discount}')";
                 DataSet resultSet;
                 try

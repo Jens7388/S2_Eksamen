@@ -35,7 +35,7 @@
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
-            
+
         </Grid.RowDefinitions>
         <ListView x:Name="listView_orders"
                   BorderThickness="1"
@@ -164,42 +164,52 @@
                  Grid.Column="2"
                  Grid.Row="12"
                  Text="{Binding SelectedOrder.ShipCountry}" />
-        <TextBox x:Name="textBoxOrderID"
-                 Grid.Column="2"
-                 Grid.Row="14"
-                 Text="{Binding SelectedOrderDetails.OrderID}" />
-        <TextBox
-                 x:Name="textBoxProductID"
+        <ComboBox x:Name="comboBoxOrderID"
+                  Grid.Column="2"
+                  Grid.Row="14"                 
+                  ItemsSource="{Binding OrderID}" />
+        <TextBox x:Name="textBoxProductID"
                  Grid.Column="2"
                  Grid.Row="15"
+                 AcceptsReturn="True"
                  Text="{Binding SelectedOrderDetails.ProductID}"
                  VerticalScrollBarVisibility="Auto" />
-        <TextBox 
-                 x:Name="textBoxUnitPrice"
+        <TextBox x:Name="textBoxUnitPrice"
                  Grid.Column="2"
                  Grid.Row="16"
+                 AcceptsReturn="True"
                  Text="{Binding SelectedOrderDetails.UnitPrice}"
                  VerticalScrollBarVisibility="Auto" />
-        <TextBox 
-                 x:Name="textBoxQuantity"
+        <TextBox x:Name="textBoxQuantity"
                  Grid.Column="2"
                  Grid.Row="17"
+                 AcceptsReturn="True"
                  Text="{Binding SelectedOrderDetails.Quantity}"
                  VerticalScrollBarVisibility="Auto" />
         <TextBox x:Name="textBoxDiscount"
                  Grid.Column="2"
                  Grid.Row="18"
+                 AcceptsReturn="True"
                  Text="{Binding SelectedOrderDetails.Discount}"
                  VerticalScrollBarVisibility="Auto" />
-        <Button x:Name="buttonSaveOrder"
+        <Button x:Name="buttonAddOrder"
                 Grid.Column="1"
                 Grid.Row="19"
-                Content="Gem / opdater"
+                Content="Tilføj ny ordre"
                 Margin="110,0,0,10"
                 Height="30"
                 Width="100"
                 HorizontalAlignment="Left"
                 Grid.ColumnSpan="2"
-                Click="buttonSaveOrder_Click" />
+                Click="buttonAddOrder_Click" />
+        <Button x:Name="buttonAddOrderDetails"
+                Grid.Column="1"
+                Grid.Row="19"
+                Content="Tilføj ny ordredetalje"
+                Margin="210,0,0,8"
+                Height="30"
+                Width="115"
+                HorizontalAlignment="Left"
+                Click="buttonAddOrderDetails_Click" />
     </Grid>
 </Window>
