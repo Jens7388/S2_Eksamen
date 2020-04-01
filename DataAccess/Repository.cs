@@ -220,6 +220,24 @@ namespace DataAccess
                 }
             }
         }
+
+        public void EditOrder(Order order)
+        {
+            string sql = $"UPDATE Orders SET  CustomerID = '{order.CustomerID}', EmployeeID = '{order.EmployeeID}'," +
+                $" OrderDate = '{order.OrderDate}', RequiredDate = '{order.RequiredDate}', ShippedDate = '{order.ShippedDate}'," +
+                $"ShipVia = '{order.ShipVia}', Freight = '{order.Freight}', ShipName = '{order.ShipName}', ShipAddress = '{order.ShipAddress}'," +
+                $" ShipCity = '{order.ShipCity}', ShipRegion = '{order.ShipRegion}', ShipPostalCode = '{order.ShipPostalCode}'," +
+                $" ShipCountry = '{order.ShipCountry}' WHERE OrderID = '{order.OrderID}'";
+            DataSet resultSet;
+            try
+            {
+                resultSet = Execute(sql);
+            }
+            catch(Exception)
+            {
+                throw;
+            }
+        }
         #endregion
     }
 }

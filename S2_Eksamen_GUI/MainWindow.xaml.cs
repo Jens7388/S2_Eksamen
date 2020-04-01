@@ -135,5 +135,24 @@ namespace S2_Eksamen_GUI
                 comboBoxShipVia.Items.Add(i);
             }
         }
+
+        private void buttonSaveOrderEdit_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                Repository repository = new Repository();
+                repository.EditOrder(viewModel.SelectedOrder);
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            
+        }
+
+        private void buttonSaveOrderDetailEdit_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

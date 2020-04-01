@@ -270,11 +270,6 @@ namespace Entities
             }
             set
             {
-                (bool isValid, string errorMessage) validationResult = ValidateStringsWithNumbers(value);
-                if(!validationResult.isValid)
-                {
-                    throw new ArgumentException(nameof(orderID), validationResult.errorMessage);
-                }
                 if(value != shipPostalCode)
                 {
                     shipPostalCode = value;
@@ -376,11 +371,15 @@ namespace Entities
 
         public static (bool, string) ValidateShipRegion(string shipRegion)
         {
-            if(shipRegion.Any(char.IsDigit))
+            if(shipRegion == null)
+            {
+                return (true, String.Empty);
+            }
+            else if(shipRegion.Any(char.IsDigit))
             {
                 return (false, "ShipRegion må ikke indeholde tal!)");
             }
-            else
+            else 
             {
                 return (true, String.Empty);
             }
